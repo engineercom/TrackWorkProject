@@ -1,0 +1,19 @@
+﻿@using TrackWorkProject.WebUI.Entities
+@model Directorate
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input  class="form-control" asp-for="Name"/>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+
+</form>
+

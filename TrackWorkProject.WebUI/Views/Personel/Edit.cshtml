@@ -1,0 +1,39 @@
+﻿@using TrackWorkProject.WebUI.Entities
+@model Personel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-8">
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label class="form-label">FullName</label>
+                <input type="text" class="form-control" asp-for="FullName" />
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @foreach (var item in ViewBag.AllDuties)
+            {
+                var isChecked = Model.PersonelDuties.Any(a => a.DutyId == item.Id);
+
+                <div class="form-check">
+
+                    <input class="form-check-input" type="checkbox" name="dutyIds" value="@item.Id" @(isChecked?"checked":"")/>
+                    <label class="form-check-label">@item.Name</label>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+</form>
+
+
+

@@ -1,0 +1,46 @@
+﻿@using TrackWorkProject.WebUI.Entities
+
+@model List<Duty>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="bg-light py-2 fw-bold mb-2 text-center">Duty List</div>
+<a class="btn btn-sm btn-success" asp-action="Create">Create</a>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Personels</th>
+        <th>Directorate</th>
+       
+        <th>@* Action *@</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>
+                <ul>
+                @foreach (var personel in item.PersonelDuties)
+                {
+                    <li>@personel.Personel.FullName</li>
+                }
+                </ul>
+
+            </td>
+            <td>@item.Directorate!.Name</td>
+           
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+

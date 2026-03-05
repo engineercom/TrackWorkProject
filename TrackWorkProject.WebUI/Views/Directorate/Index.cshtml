@@ -1,0 +1,53 @@
+﻿@using TrackWorkProject.WebUI.Models
+@model List<DirectorateDutiesViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="bg-light py-2 fw-bold mb-2 text-center">Directorate List</div>
+<a class="btn btn-sm btn-success" asp-action="Create">Create</a>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Duties</th>
+        <th>Action</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>
+                    @if (item.Duties.Count == 0)
+                    {
+                        <span>duty not assigned</span>
+                    }
+                    else
+                    {
+
+                        <ul>
+                           @foreach (var duty in item.Duties)
+                            {
+                            <li>@duty.Name</li>
+
+                            }
+                        </ul>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+  
+
+</table>
+
+
+
